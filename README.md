@@ -49,6 +49,23 @@ Regenerate them with:
 python3 /Users/lrram/Documents/Projects/voice2text/assets/icons/generate_icons.py
 ```
 
+## macOS App Bundles
+
+Build Dock-launchable apps with:
+
+```bash
+python3 /Users/lrram/Documents/Projects/voice2text/scripts/build_macos_apps.py
+```
+
+That creates:
+
+- `/Users/lrram/Documents/Projects/voice2text/dist/Voice2Text On.app`
+- `/Users/lrram/Documents/Projects/voice2text/dist/Voice2Text Off.app`
+
+`Voice2Text On.app` launches the unified desktop app.
+
+`Voice2Text Off.app` stops it.
+
 ## Desktop output
 
 By default the apps create and use:
