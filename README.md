@@ -1,31 +1,37 @@
 # Voice2Text_OnDesktop
 
-Two local Python apps for a MacWhisper-first dictation workflow:
+A local Python desktop prototype for low-friction technical dictation on macOS.
 
-- `session_control_app.py` starts and stops a dictation session.
-- `background_processor_app.py` watches transcript files and generates `.el` and `.tex` outputs.
+Primary entrypoint:
+
+- `desktop_app.py` combines recording, session management, transcript queueing, processing, preview, and settings in one app.
+
+Legacy entrypoints are still available:
+
+- `session_control_app.py`
+- `background_processor_app.py`
 
 ## Workflow
 
-1. Launch the session control app.
-2. Press `Start Session`.
-3. Record and transcribe in MacWhisper.
-4. Export the transcript `.txt` file into the configured MacWhisper export folder.
-5. Press `Stop Session`.
-6. Launch or keep running the background processor app.
-7. The processor archives the raw transcript and writes Emacs and LaTeX outputs.
+1. Launch the unified desktop app.
+2. Press `Start Recording`.
+3. Speak into the microphone. The app saves a `.wav` recording locally.
+4. Stop recording.
+5. Transcribe that recording in MacWhisper and export the transcript `.txt` file into the configured MacWhisper export folder.
+6. Click `Import MacWhisper Exports Now` if the transcript was exported after the session ended.
+7. The built-in processor archives the raw transcript and writes Emacs and LaTeX outputs.
+8. Use the Recent Outputs and Preview panes to inspect the results.
 
 ## Important scope note
 
-This prototype does not click buttons inside MacWhisper or control macOS Dictation directly. The session app wraps the workflow with a start/stop button and imports transcripts created during that session. That keeps the implementation aligned with the original MacWhisper-first MVP and avoids brittle UI automation.
+This prototype records audio directly with `rec` from SoX, but it still does not click buttons inside MacWhisper or control macOS Dictation directly. Transcription remains external unless you install a local transcription backend later. That keeps the implementation aligned with the original MacWhisper-first MVP while reducing friction.
 
 ## Run
 
 Use Python 3.11+ and set `PYTHONPATH=app`.
 
 ```bash
-PYTHONPATH=app python3 app/session_control_app.py
-PYTHONPATH=app python3 app/background_processor_app.py
+PYTHONPATH=app python3 app/desktop_app.py
 ```
 
 ## Desktop output
@@ -33,6 +39,7 @@ PYTHONPATH=app python3 app/background_processor_app.py
 By default the apps create and use:
 
 - `/Users/lrram/Desktop/Voice2Text_OnDesktop/macwhisper_exports`
+- `/Users/lrram/Desktop/Voice2Text_OnDesktop/recordings`
 - `/Users/lrram/Desktop/Voice2Text_OnDesktop/incoming_transcripts`
 - `/Users/lrram/Desktop/Voice2Text_OnDesktop/raw_archive`
 - `/Users/lrram/Desktop/Voice2Text_OnDesktop/emacs`

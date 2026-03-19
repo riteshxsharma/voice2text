@@ -13,6 +13,7 @@ DEFAULT_CONFIG_PATH = DESKTOP_PROJECT / "settings.json"
 class AppConfig:
     desktop_project_dir: str = str(DESKTOP_PROJECT)
     macwhisper_export_dir: str = str(DESKTOP_PROJECT / "macwhisper_exports")
+    recordings_dir: str = str(DESKTOP_PROJECT / "recordings")
     incoming_dir: str = str(DESKTOP_PROJECT / "incoming_transcripts")
     raw_archive_dir: str = str(DESKTOP_PROJECT / "raw_archive")
     emacs_dir: str = str(DESKTOP_PROJECT / "emacs")
@@ -52,6 +53,10 @@ class AppConfig:
         return Path(self.incoming_dir)
 
     @property
+    def recordings_path(self) -> Path:
+        return Path(self.recordings_dir)
+
+    @property
     def raw_archive_path(self) -> Path:
         return Path(self.raw_archive_dir)
 
@@ -70,6 +75,7 @@ class AppConfig:
     def ensure_directories(self) -> None:
         self.desktop_project_path.mkdir(parents=True, exist_ok=True)
         self.macwhisper_export_path.mkdir(parents=True, exist_ok=True)
+        self.recordings_path.mkdir(parents=True, exist_ok=True)
         self.incoming_path.mkdir(parents=True, exist_ok=True)
         self.raw_archive_path.mkdir(parents=True, exist_ok=True)
         self.emacs_path.mkdir(parents=True, exist_ok=True)

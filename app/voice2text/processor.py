@@ -111,3 +111,19 @@ class TranscriptProcessor:
         }
         with log_path.open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(record) + "\n")
+
+    def recent_results(self, limit: int = 10) -> list[dict[str, str]]:
+        log_path = self.config.logs_path / "events.jsonl"
+        if not log_path.exists():
+            return []
+
+        records: list[dict[str, str]] = []
+        with log_path.open("r", encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                record = json.loads(line)
+                if record.get("event") == "processed":
+                    records.append(record)
+        return list(reversed(records[-limit:]))
