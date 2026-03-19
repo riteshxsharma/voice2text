@@ -1,0 +1,8 @@
+[project]
+name = "voice2text-ondesktop"
+version = "0.1.0"
+description = "MacWhisper-first transcript processing prototype"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["app"]
