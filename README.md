@@ -34,6 +34,21 @@ Use Python 3.11+ and set `PYTHONPATH=app`.
 PYTHONPATH=app python3 app/desktop_app.py
 ```
 
+## Icon Assets
+
+The repo includes high-contrast icon assets aimed at low-vision usability:
+
+- `/Users/lrram/Documents/Projects/voice2text/assets/icons/voice2text_on.png`
+- `/Users/lrram/Documents/Projects/voice2text/assets/icons/voice2text_off.png`
+- `/Users/lrram/Documents/Projects/voice2text/assets/icons/voice2text_on.svg`
+- `/Users/lrram/Documents/Projects/voice2text/assets/icons/voice2text_off.svg`
+
+Regenerate them with:
+
+```bash
+python3 /Users/lrram/Documents/Projects/voice2text/assets/icons/generate_icons.py
+```
+
 ## Desktop output
 
 By default the apps create and use:

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect x="48" y="48" width="928" height="928" rx="180" fill="#141414" stroke="#f5f5f5" stroke-width="10"/>
+  <rect x="90" y="120" width="141" height="784" fill="#ff4040"/>
+  <rect x="231" y="120" width="141" height="784" fill="#ff9329"/>
+  <rect x="372" y="120" width="141" height="784" fill="#ffd60a"/>
+  <rect x="513" y="120" width="141" height="784" fill="#31c05c"/>
+  <rect x="654" y="120" width="141" height="784" fill="#2694ff"/>
+  <rect x="795" y="120" width="139" height="784" fill="#6d4cff"/>
+  <g opacity="0.45" stroke="#f5f5f5" stroke-width="16">
+    <line x1="140" y1="178" x2="884" y2="178"/>
+    <line x1="140" y1="268" x2="884" y2="268"/>
+    <line x1="140" y1="358" x2="884" y2="358"/>
+    <line x1="140" y1="448" x2="884" y2="448"/>
+    <line x1="140" y1="538" x2="884" y2="538"/>
+    <line x1="140" y1="628" x2="884" y2="628"/>
+    <line x1="140" y1="718" x2="884" y2="718"/>
+    <line x1="140" y1="808" x2="884" y2="808"/>
+  </g>
+  <ellipse cx="512" cy="512" rx="262" ry="262" fill="#080808" opacity="0.35"/>
+  <path d="M 686 400 A 212 212 0 1 1 338 400" fill="none" stroke="#ffffff" stroke-width="42" stroke-linecap="round"/>
+  <line x1="512" y1="190" x2="512" y2="460" stroke="#ffffff" stroke-width="42" stroke-linecap="round"/>
+</svg>
