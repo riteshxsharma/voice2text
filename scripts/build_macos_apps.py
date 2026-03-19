@@ -49,7 +49,7 @@ if pgrep -f "$APP_SCRIPT" >/dev/null; then
   exit 0
 fi
 cd "$APP_ROOT"
-nohup "$PYTHON_BIN" "$APP_SCRIPT" >> "$LOG_DIR/desktop_app_stdout.log" 2>> "$LOG_DIR/desktop_app_stderr.log" < /dev/null &
+exec "$PYTHON_BIN" "$APP_SCRIPT" >> "$LOG_DIR/desktop_app_stdout.log" 2>> "$LOG_DIR/desktop_app_stderr.log"
 """
 
 
@@ -83,14 +83,16 @@ def compile_app(app_name: str, shell_script_text: str, icns_path: Path) -> Path:
         "CFBundleDevelopmentRegion": "English",
         "CFBundleDisplayName": app_name,
         "CFBundleExecutable": executable_name,
-        "CFBundleIconFile": icon_name,
+        "CFBundleIconFile": executable_name,
         "CFBundleIdentifier": f"com.riteshxsharma.{executable_name.lower()}",
         "CFBundleInfoDictionaryVersion": "6.0",
         "CFBundleName": app_name,
         "CFBundlePackageType": "APPL",
+        "CFBundleSignature": "V2TX",
         "CFBundleShortVersionString": "0.1.0",
         "CFBundleVersion": "1",
         "LSUIElement": False,
+        "NSPrincipalClass": "NSApplication",
         "NSHighResolutionCapable": True,
     }
     with plist_path.open("wb") as handle:
