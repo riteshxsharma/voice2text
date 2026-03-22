@@ -17,6 +17,7 @@ class Voice2TextDesktopApp:
         self.root = root
         self.root.title("Voice2Text OnDesktop")
         self.root.geometry("1100x760")
+        self.root.configure(bg="#f3f6f4")
 
         self.config = AppConfig.load()
         self.config.ensure_directories()
@@ -108,6 +109,51 @@ class Voice2TextDesktopApp:
         ttk.Button(preview_controls, text="Show Raw", command=lambda: self.show_preview("archived_path")).pack(side="left", padx=(8, 0))
         self.preview = tk.Text(preview_frame, height=18)
         self.preview.pack(fill="both", expand=True, pady=(8, 0))
+
+        accessibility = tk.LabelFrame(
+            frame,
+            text="Large Workflow Buttons",
+            font=("Helvetica", 18, "bold"),
+            bg="#fff7db",
+            fg="#1d2a1f",
+            padx=16,
+            pady=14,
+            bd=3,
+            relief="groove",
+        )
+        accessibility.pack(fill="x", pady=(16, 0))
+        tk.Label(
+            accessibility,
+            text="Large duplicate buttons for the main workflow. Use these for quick access.",
+            font=("Helvetica", 14, "bold"),
+            bg="#fff7db",
+            fg="#1d2a1f",
+            anchor="w",
+        ).pack(fill="x", pady=(0, 12))
+
+        big_controls = tk.Frame(accessibility, bg="#fff7db")
+        big_controls.pack(fill="x")
+        self._build_large_button(
+            big_controls,
+            text="START RECORDING",
+            command=self.start_recording,
+            bg="#6f3fd1",
+            active_bg="#5f31bf",
+        ).pack(side="left", fill="x", expand=True)
+        self._build_large_button(
+            big_controls,
+            text="STOP RECORDING",
+            command=self.stop_recording,
+            bg="#c9372c",
+            active_bg="#ae2b21",
+        ).pack(side="left", fill="x", expand=True, padx=18)
+        self._build_large_button(
+            big_controls,
+            text="PROCESS",
+            command=self.import_exports_now,
+            bg="#1f9d55",
+            active_bg="#177a41",
+        ).pack(side="left", fill="x", expand=True)
 
         bottom = ttk.LabelFrame(frame, text="Status", padding=12)
         bottom.pack(fill="both", expand=False, pady=(16, 0))
@@ -214,6 +260,34 @@ class Voice2TextDesktopApp:
     def _append_log(self, message: str) -> None:
         self.log_box.insert("end", f"{message}\n")
         self.log_box.see("end")
+
+    def _build_large_button(
+        self,
+        parent: tk.Widget,
+        *,
+        text: str,
+        command: object,
+        bg: str,
+        active_bg: str,
+    ) -> tk.Button:
+        return tk.Button(
+            parent,
+            text=text,
+            command=command,
+            font=("Helvetica", 20, "bold"),
+            bg=bg,
+            fg="white",
+            activebackground=active_bg,
+            activeforeground="white",
+            relief="raised",
+            bd=5,
+            padx=18,
+            pady=20,
+            cursor="hand2",
+            highlightthickness=2,
+            highlightbackground="#ffffff",
+            highlightcolor="#ffffff",
+        )
 
     def _present_window(self) -> None:
         self.root.deiconify()
