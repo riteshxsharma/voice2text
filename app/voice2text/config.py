@@ -6,7 +6,9 @@ from pathlib import Path
 
 
 DESKTOP_PROJECT = Path.home() / "Desktop" / "Voice2Text_OnDesktop"
-DEFAULT_CONFIG_PATH = DESKTOP_PROJECT / "settings.json"
+APP_SUPPORT_DIR = Path.home() / "Library" / "Application Support" / "Voice2Text_OnDesktop"
+APP_LOGS_DIR = Path.home() / "Library" / "Logs" / "Voice2Text_OnDesktop"
+DEFAULT_CONFIG_PATH = APP_SUPPORT_DIR / "settings.json"
 
 
 @dataclass
@@ -41,6 +43,14 @@ class AppConfig:
             json.dump(asdict(self), handle, indent=2)
 
     @property
+    def app_support_path(self) -> Path:
+        return APP_SUPPORT_DIR
+
+    @property
+    def app_logs_path(self) -> Path:
+        return APP_LOGS_DIR
+
+    @property
     def desktop_project_path(self) -> Path:
         return Path(self.desktop_project_dir)
 
@@ -73,6 +83,8 @@ class AppConfig:
         return Path(self.logs_dir)
 
     def ensure_directories(self) -> None:
+        self.app_support_path.mkdir(parents=True, exist_ok=True)
+        self.app_logs_path.mkdir(parents=True, exist_ok=True)
         self.desktop_project_path.mkdir(parents=True, exist_ok=True)
         self.macwhisper_export_path.mkdir(parents=True, exist_ok=True)
         self.recordings_path.mkdir(parents=True, exist_ok=True)

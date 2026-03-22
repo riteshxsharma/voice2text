@@ -34,6 +34,7 @@ class Voice2TextDesktopApp:
         self.processor.start()
         self.refresh_recent_outputs()
         self._append_log("Unified app ready. Background processor is running.")
+        self.root.after(150, self._present_window)
         self.root.after(400, self._drain_ui_queue)
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
 
@@ -213,6 +214,13 @@ class Voice2TextDesktopApp:
     def _append_log(self, message: str) -> None:
         self.log_box.insert("end", f"{message}\n")
         self.log_box.see("end")
+
+    def _present_window(self) -> None:
+        self.root.deiconify()
+        self.root.lift()
+        self.root.focus_force()
+        self.root.attributes("-topmost", True)
+        self.root.after(500, lambda: self.root.attributes("-topmost", False))
 
     def _queue_log(self, message: str) -> None:
         self.ui_queue.put(("log", message))

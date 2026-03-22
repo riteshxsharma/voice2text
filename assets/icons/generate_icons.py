@@ -89,20 +89,20 @@ def save_on_icon() -> None:
 
 
 def save_off_icon() -> None:
-    image = Image.new("RGBA", (ICON_SIZE, ICON_SIZE), (0, 0, 0, 255))
+    image = Image.new("RGBA", (ICON_SIZE, ICON_SIZE), (20, 110, 40, 255))
     draw = ImageDraw.Draw(image)
     border = 48
 
     draw.rounded_rectangle(
         [border, border, ICON_SIZE - border, ICON_SIZE - border],
         radius=180,
-        fill=(0, 0, 0, 255),
-        outline=(130, 0, 0, 255),
+        fill=(20, 110, 40, 255),
+        outline=(230, 255, 235, 255),
         width=12,
     )
 
     for y in range(150, 900, 120):
-        draw.rectangle([130, y, 894, y + 8], fill=(60, 0, 0, 255))
+        draw.rectangle([130, y, 894, y + 8], fill=(160, 235, 175, 255))
 
     font = load_font(310)
     text = "OFF"
@@ -114,16 +114,16 @@ def save_off_icon() -> None:
         origin,
         text,
         font=font,
-        fill=(245, 0, 0, 255),
+        fill=(255, 255, 255, 255),
         stroke_width=18,
-        stroke_fill=(255, 220, 220, 255),
+        stroke_fill=(18, 70, 30, 255),
     )
 
     image.save(OUTPUT_DIR / "voice2text_off.png")
 
     svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
-  <rect x="48" y="48" width="928" height="928" rx="180" fill="#000000" stroke="#820000" stroke-width="12"/>
-  <g opacity="0.7" stroke="#3c0000" stroke-width="8">
+  <rect x="48" y="48" width="928" height="928" rx="180" fill="#146e28" stroke="#e6ffeb" stroke-width="12"/>
+  <g opacity="0.7" stroke="#a0ebb0" stroke-width="8">
     <line x1="130" y1="154" x2="894" y2="154"/>
     <line x1="130" y1="274" x2="894" y2="274"/>
     <line x1="130" y1="394" x2="894" y2="394"/>
@@ -132,7 +132,7 @@ def save_off_icon() -> None:
     <line x1="130" y1="754" x2="894" y2="754"/>
     <line x1="130" y1="874" x2="894" y2="874"/>
   </g>
-  <text x="512" y="585" text-anchor="middle" font-size="310" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#f50000" stroke="#ffdcdc" stroke-width="18">OFF</text>
+  <text x="512" y="585" text-anchor="middle" font-size="310" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#ffffff" stroke="#12461e" stroke-width="18">OFF</text>
 </svg>
 """
     (OUTPUT_DIR / "voice2text_off.svg").write_text(svg, encoding="utf-8")
